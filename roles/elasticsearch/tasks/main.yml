@@ -1,12 +1,31 @@
 - name: install java
-  apt: name={{ elasticsearch_java_version }} state=present update_cache=yes cache_valid_time=3600
+  apt: name={{ es_java_version }} state=present
   become: yes
-  when: elasticsearch_install_java
+  when: es_install_java
 
 - name: adding gpg key
-  apt_key: url=http://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+  apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
   become: yes
 
 - name: add repository
-  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/{{elasticsearch_version}}/debian stable main'    state=present
+  apt_repository: repo='deb http://packages.elastic.co/elasticsearch/{{es_version}}/debian stable main' state=present
   become: yes
+
+- name: install
+  apt: name=elasticsearch state=present
+  become: yes
+
+- name: get installed plugins
+  shell: bin/plugin -l chdir={{ es_dir }}
+  changed_when: false
+  register: es_installed_plugins
+
+- name: instal plugins
+  shell: bin/plugin -install {{ item.name }} -url {{ item.url }} chdir={{ es_dir }}
+  become: yes
+  with_items:
+    - {
+        name: "analysis-morphology",
+        url: "http://dl.bintray.com/content/imotov/elasticsearch-plugins/org/elasticsearch/elasticsearch-analysis-morphology/1.2.0/elasticsearch-analysis-morphology-1.2.0.zip"
+      }
+  when: "'- {{item.name}}' not in es_installed_plugins.stdout"
