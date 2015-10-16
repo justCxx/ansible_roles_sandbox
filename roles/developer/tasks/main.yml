@@ -1,0 +1,21 @@
+- name: install basic tools
+  apt: name={{ item }} state=latest
+  become: yes
+  with_items:
+    - git
+    - wget
+
+- name: install required packages
+  apt: name={{ item }} state=latest
+  become: yes
+  with_items:
+    - imagemagick
+    - libmagickwand-dev
+    - libxslt1-dev
+    - libxml2-dev
+    - libidn11-dev
+    - jpegoptim
+    - pngcrush
+    - gifsicle
+    - libsasl2-dev
+    - libldap2-dev

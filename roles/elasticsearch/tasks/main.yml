@@ -1,0 +1,12 @@
+- name: install java
+  apt: name={{ elasticsearch_java_version }} state=present update_cache=yes cache_valid_time=3600
+  become: yes
+  when: elasticsearch_install_java
+
+- name: adding gpg key
+  apt_key: url=http://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+  become: yes
+
+- name: add repository
+  apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/{{elasticsearch_version}}/debian stable main'    state=present
+  become: yes

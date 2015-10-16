@@ -1,0 +1,12 @@
+# Elasticsearch version from debian repository
+elasticsearch_version: 1.7.3
+elasticsearch_install_java: True
+elasticsearch_java_version: 'openjdk-7-jdk'
+elasticsearch_heap_size: '2g'
+elasticsearch_fqdn: localhost
+elasticsearch_port: 9200
+
+# Install plugins
+elasticsearch_plugins:
+  - name: analysis-morphology
+    path: http://dl.bintray.com/content/imotov/elasticsearch-plugins/org/elasticsearch/elasticsearch-analysis-morphology/1.2.0/elasticsearch-analysis-morphology-1.2.0.zip
