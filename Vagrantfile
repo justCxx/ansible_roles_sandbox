@@ -38,11 +38,12 @@ Vagrant.configure(2) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vb|
-    vb.memory = "512"
+    vb.memory = "1024"
+    vb.cpus = 4
   end
 
   config.vm.provision "ansible" do |ansible|
-      ansible.playbook = "playbook.yml"
-      ansible.verbose = "v"
+    ansible.playbook = "playbook.yml"
+    # ansible.verbose = "v"
   end
 end
