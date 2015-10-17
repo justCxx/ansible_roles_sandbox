@@ -1,5 +1,2 @@
 - include: os_packages.yml
-- include: sources.yml
-
-# - name: update bundler
-#   command: gem update bundler chdir="{{ project_dir }}"
+# - include: mguesser.yml

@@ -1,0 +1,15 @@
+- name: uninstall system ruby
+  apt: name=ruby1.9.1 state=absent
+  become: yes
+
+- name: add repository
+  apt_repository: repo="{{ ruby_ppa }}" update_cache=yes
+  become: yes
+
+- name: install
+  apt: name="ruby{{ ruby_version }}"
+  become: yes
+
+- name: install bundler
+  command: gem install bundler
+  become: yes

@@ -1,6 +1,0 @@
-- name: install Ruby
-  command: '~/.rvm/bin/rvm install {{ item }}'
-  with_items: ruby_versions
-
-# - name: set default ruby
-#   command: "~/.rvm/bin/rvm alias create default {{ ruby_version }}"

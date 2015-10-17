@@ -2,9 +2,9 @@
 
 - hosts: all
   roles:
-    - elasticsearch
-    - postgresql
-    - redis
-    - rvm
-    - application
-    - developer
+    # - elasticsearch
+    # - postgresql
+    # - redis
+    - ruby
+    # - application
+    # - developer

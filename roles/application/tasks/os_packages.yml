@@ -24,5 +24,3 @@
     - gifsicle
     - libsasl2-dev
     - libldap2-dev
-
-# - include: mguesser.yml
