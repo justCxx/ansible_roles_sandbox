@@ -8,18 +8,18 @@
   when: es_install_java
 
 - name: adding gpg key
-  apt_key: url=https://packages.elastic.co/GPG-KEY-elasticsearch state=present
+  apt_key: url={{ es_repositoty_key }} state=present
   become: yes
 
 - name: add repository
-  apt_repository: repo='deb http://packages.elastic.co/elasticsearch/{{es_version}}/debian stable main' state=present
+  apt_repository: repo={{ es_repositoty }} state=present
   become: yes
 
 - name: install
   apt: name=elasticsearch state=present
   become: yes
 
-- name: get installed plugins
+- name: check installed plugins
   shell: bin/plugin -l chdir={{ es_dir }}
   changed_when: false
   register: es_installed_plugins
