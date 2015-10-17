@@ -1,0 +1,7 @@
+- name: install
+  apt: name=redis-server state=present force=yes
+  become: yes
+
+- name: start service
+  service: name=redis-server state=restarted enabled=yes
+  become: yes
