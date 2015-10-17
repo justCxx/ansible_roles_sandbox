@@ -1,0 +1,11 @@
+- name: download Mguesser
+  get_url: url={{ mguesser_url }} dest=/tmp
+  register: mguesser
+
+- name: extract Mguesser from tarball
+  unarchive: src=/tmp/mguesser-0.4.tar.gz dest=/tmp copy=no
+  register: mguesser
+
+- name: make Mguesser
+  shell: make chdir=/tmp/mguesser-0.4/
+  become: yes

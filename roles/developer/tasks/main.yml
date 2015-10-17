@@ -1,25 +1,5 @@
-- name: update pakages
-  apt: update_cache=yes cache_valid_time=3600
+- name: configure local domains
+  copy: src=hosts dest=/etc/hosts backup=yes mode=0644
   become: yes
 
-- name: install basic tools
-  apt: name={{ item }} state=latest
-  become: yes
-  with_items:
-    - git
-    - wget
-
-- name: install required packages
-  apt: name={{ item }} state=latest
-  become: yes
-  with_items:
-    - imagemagick
-    - libmagickwand-dev
-    - libxslt1-dev
-    - libxml2-dev
-    - libidn11-dev
-    - jpegoptim
-    - pngcrush
-    - gifsicle
-    - libsasl2-dev
-    - libldap2-dev
+- include: postgres.yml

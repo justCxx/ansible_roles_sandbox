@@ -12,7 +12,7 @@
   become: yes
 
 - name: add repository
-  apt_repository: repo={{ es_repositoty }} state=present
+  apt_repository: repo="{{ es_repositoty }}" state=present
   become: yes
 
 - name: install

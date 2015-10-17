@@ -1,1 +1,2 @@
 /.vagrant
+/roles/application/files/id_rsa

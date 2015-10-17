@@ -1,0 +1,13 @@
+- stat: path="{{ pg_hba_conf_path }}"
+  register: pg_hba_conf
+
+- name: set db auth method
+  replace:
+    dest: /etc/postgresql/9.4/main/pg_hba.conf
+    regexp: (local\s+all\s+(?:postgres|all)\s+)(\w+)
+    replace: \1trust
+    backup: yes
+  become: yes
+  when: pg_hba_conf.stat.exists
+  notify:
+    - restart postgresql

@@ -1,0 +1,9 @@
+install_ruby: True
+uninstall_system_ruby: True
+ruby_versions:
+  # - 2.2.3
+  - 2.1.5
+
+rvm_server_key: hkp://keys.gnupg.net
+rvm_key: 409B6B1796C275462A1703113804BB82D39DC0E3
+rvm_url: https://get.rvm.io
