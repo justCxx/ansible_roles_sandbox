@@ -1,0 +1,11 @@
+- name: add repository key
+  apt_key: url={{ pg_repositoty_key }} state=present
+  become: yes
+
+- name: add repository
+  apt_repository: repo="{{ pg_repositoty }}" state=present
+  become: yes
+
+- name: install
+  apt: name="postgresql-{{ pg_version }}" state=present
+  become: yes
